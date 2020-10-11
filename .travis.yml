@@ -2,7 +2,7 @@ dist: trusty
 sudo: required
 language: node_js
 node_js:
-  - '10'
+  - '12'
 
 os:
   - linux
@@ -15,8 +15,7 @@ jobs:
     - stage: test
       script: npm run test
       skip_cleanup: true
-    - stage: Build & publish
+    - stage: release
       script:
-        - npm run build
         - npx semantic-release
       if: branch = master
