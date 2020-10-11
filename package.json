@@ -1,7 +1,7 @@
 {
   "name": "alkemi-earn-kyc-service",
   "description": "API & web3 hot wallet service api",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "homepage": "",
   "private": true,
   "main": "src",
