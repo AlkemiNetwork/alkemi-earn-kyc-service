@@ -1,14 +1,20 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
+const addCustomerKyc = require('../../hooks/add-customer-kyc');
+
+const removeCustomerKyc = require('../../hooks/remove-customer-kyc');
+
+const verifyKyc = require('../../hooks/verify-kyc');
+
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [authenticate('jwt')],
     find: [],
-    get: [],
-    create: [],
+    get: [verifyKyc()],
+    create: [addCustomerKyc()],
     update: [],
     patch: [],
-    remove: []
+    remove: [removeCustomerKyc()]
   },
 
   after: {
