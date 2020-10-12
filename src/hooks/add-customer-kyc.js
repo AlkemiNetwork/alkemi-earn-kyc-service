@@ -15,18 +15,18 @@ module.exports = (options = {}) => {
     const addCustomerKYC = await marketContract.methods
       .addCustomerKYC(data._id)
       .send()
-      .then(res => {
-        console.log(res);
-        return res;
+      .on('error', function(error) {
+        new GeneralError(new Error('Customer Not Added: ' + data._id, error));
+      })
+      .then(receipt => {
+        console.log(receipt);
+        return receipt;
       });
 
-    if (addCustomerKYC == 0) {
+    if (addCustomerKYC) {
       console.log('Successfully Added Customer: ' + data._id);
-    } else {
-      new GeneralError(new Error('Customer Not Added: ' + data._id));
     }
 
-    // Add new Fields
     context.data = {
       ...data // Preserve submitted data
     };
