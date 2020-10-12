@@ -9,12 +9,11 @@ const feathers = require('@feathersjs/feathers');
 const configuration = require('@feathersjs/configuration');
 const express = require('@feathersjs/express');
 
-
-
 const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
 const channels = require('./channels');
+const swagger = require('./swagger');
 
 const authentication = require('./authentication');
 
@@ -29,12 +28,10 @@ app.use(compress());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
-// Host the public folder
-app.use('/', express.static(app.get('public')));
 
 // Set up Plugins and providers
+app.configure(swagger);
 app.configure(express.rest());
-
 
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);
@@ -43,6 +40,9 @@ app.configure(authentication);
 app.configure(services);
 // Set up event channels (see channels.js)
 app.configure(channels);
+
+// Host the public folder
+app.use('/', express.static(app.get('public')));
 
 // Configure a middleware for 404s and the error handler
 app.use(express.notFound());
