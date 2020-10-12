@@ -1,0 +1,21 @@
+FROM node:lts-alpine
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+# Manually Set ENV variables
+
+ENV HOST localhost:3030
+ENV WALLET_PRIVATE_KEY 5243f72ed2aa75c1feb4c7fd1e87db0d94c6f41d190ed68dbaa36b1538576d56
+ENV NETWORK ropsten
+ENV INFURA_ID 90aa3e4fc0554b03a84b12f8ecbe6b37
+ENV INFURA_SECRET dfc6fe48494f490b8518951e521cbedf
+
+EXPOSE 3030
+
+CMD ["npm", "run", "start"]

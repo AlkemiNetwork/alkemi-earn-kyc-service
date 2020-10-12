@@ -6,13 +6,17 @@
 
 ![GitHub stars](https://img.shields.io/github/stars/project-alkemi/alkemi-earn-kyc-service?style=social&label=star) ![GitHub forks](https://img.shields.io/github/forks/project-alkemi/alkemi-earn-kyc-service?style=social&label=fork) ![GitHub watchers](https://img.shields.io/github/watchers/project-alkemi/alkemi-earn-kyc-service?style=social&label=watch) ![GitHub followers](https://img.shields.io/github/followers/project-alkemi?label=follow&style=social)
 
-> API &amp; web3 hot wallet service api for exchange partners to programatically add verified KYC addresses to the protocol.
+> REST API service for exchanges to programatically add verified KYC addresses to the Alkemi Earn protocol via web3.
 
 ## About
 
-This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
+This project allows for exchange operators who are integrated with the Alkemi Earn protocol to add (KYC) verified customer addresses to the protocol.
+
+Built with [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
 
 ## Getting Started
+
+**Important:** the WALLET Public Address you set in your environment variables with `WALLET_PRIVATE_KEY` must be previously added by the Alkemi Earn protocol Admin, otherwise this service will fail.
 
 1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
 
@@ -35,9 +39,40 @@ This project uses [Feathers](http://feathersjs.com). An open source web framewor
    npm start
    ```
 
+5. View Swagger Interface and OpenAPI spec by visiting http://localhost:3030
+
 ## Testing
 
 Simply run `npm test` and all your tests in the `test/` directory will be run.
+
+## Run with Docker
+
+1. Set the Environment Variables in the DockerFile
+
+   ```sh
+   # Manually Set ENV variables see .env for working dry run example
+   ENV HOST localhost:3030
+   ENV WALLET_PRIVATE_KEY <value>
+
+   # mainnet / ropsten / rinkeby / kovan
+   ENV NETWORK <value>
+
+   # infura.io
+   ENV INFURA_ID <value>
+   ENV INFURA_SECRET <value>
+   ```
+
+2. Build the docker container with the local DockerFile
+
+   ```sh
+   docker build -t alkemi-earn-kyc-service .
+   ```
+
+3. Run the Container
+
+   ```sh
+   docker run -d -p 3030:3030 --name alkemi-earn-kyc-container alkemi-earn-kyc-service
+   ```
 
 ## License
 
