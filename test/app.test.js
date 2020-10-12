@@ -4,12 +4,13 @@ const url = require('url');
 const app = require('../src/app');
 
 const port = app.get('port') || 8998;
-const getUrl = pathname => url.format({
-  hostname: app.get('host') || 'localhost',
-  protocol: 'http',
-  port,
-  pathname
-});
+const getUrl = pathname =>
+  url.format({
+    hostname: app.get('host') || 'localhost',
+    protocol: 'http',
+    port,
+    pathname
+  });
 
 describe('Feathers application tests', () => {
   let server;
@@ -26,7 +27,7 @@ describe('Feathers application tests', () => {
   it('starts and shows the index page', async () => {
     const { data } = await axios.get(getUrl());
 
-    assert.ok(data.indexOf('<html lang="en">') !== -1);
+    assert.equal(data.openapi, '3.0.2');
   });
 
   describe('404', function() {
@@ -34,7 +35,7 @@ describe('Feathers application tests', () => {
       try {
         await axios.get(getUrl('path/to/nowhere'), {
           headers: {
-            'Accept': 'text/html'
+            Accept: 'text/html'
           }
         });
         assert.fail('should never get here');
