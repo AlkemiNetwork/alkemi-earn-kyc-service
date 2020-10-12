@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/project-alkemi/alkemi-earn-kyc-service/compare/v1.1.0...v1.2.0) (2020-10-12)
+
+
+### Features
+
+* add customer kyc method ([f870872](https://github.com/project-alkemi/alkemi-earn-kyc-service/commit/f870872274cd4b5b34d7f50444d52161a9f8a6b5))
+* add remove customer kyc method ([0eaab53](https://github.com/project-alkemi/alkemi-earn-kyc-service/commit/0eaab539baa507140478bf013ad8981e9ce061e8))
+* add verify customer kyc method ([59a75d8](https://github.com/project-alkemi/alkemi-earn-kyc-service/commit/59a75d879ea33b78522878fd2580f12efca0b0d9))
+
 # [1.1.0](https://github.com/project-alkemi/alkemi-earn-kyc-service/compare/v1.0.0...v1.1.0) (2020-10-11)
 
 
