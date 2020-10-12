@@ -1,5 +1,4 @@
 dist: trusty
-sudo: required
 language: node_js
 node_js:
   - '12'
@@ -11,10 +10,8 @@ jobs:
   include:
     - stage: install
       script: npm install
-      skip_cleanup: true
     - stage: test
       script: npm run test
-      skip_cleanup: true
     - stage: release
       script:
         - npx semantic-release
