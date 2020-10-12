@@ -6,24 +6,25 @@ const { GeneralError } = require('@feathersjs/errors');
 // eslint-disable-next-line no-unused-vars
 module.exports = (options = {}) => {
   return async context => {
-    const { data } = context;
+    const { id, data } = context;
 
     // initialize Market Contract
     const marketContract = await initMarketContract();
 
     // add Address to Protocol
     const removeCustomerKYC = await marketContract.methods
-      .removeCustomerKYC(data._id)
+      .removeCustomerKYC(id)
       .send()
-      .then(res => {
-        console.log(res);
-        return res;
+      .on('error', function(error) {
+        new GeneralError(new Error('Customer Not Removed: ' + id, error));
+      })
+      .then(receipt => {
+        console.log(receipt);
+        return receipt;
       });
 
-    if (removeCustomerKYC == 0) {
-      console.log('Successfully Removed Customer: ' + data._id);
-    } else {
-      new GeneralError(new Error('Customer Not Removed:' + data._id));
+    if (removeCustomerKYC) {
+      console.log('Successfully Removed Customer: ' + id);
     }
 
     // Add new Fields
