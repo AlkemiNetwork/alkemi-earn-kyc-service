@@ -1,18 +1,26 @@
-const Web3 = require(web3);
+const Web3 = require('web3');
 
 const logger = require('../logger');
 const { contracts } = require('../constants/address_map');
-const mMarketAbi = require('../abi/mMarket.abi');
+const mMarketAbi = require('../abi/mMarket.json');
 
 const { provider } = require('./provider');
 const web3 = new Web3(provider);
 
 const network = process.env.NETWORK;
 
+// Creates an account object from a private key.
+const account = web3.eth.accounts.privateKeyToAccount(
+  process.env.WALLET_PRIVATE_KEY
+);
+
 exports.initMarketContract = async () => {
   const marketContract = new web3.eth.Contract(
     mMarketAbi,
-    contracts[network].MMARKET
+    contracts[network].MMARKET,
+    {
+      from: account.address // default from address
+    }
   );
   if (marketContract.error) {
     if (marketContract.code == 429) {
