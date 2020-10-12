@@ -1,3 +1,11 @@
+## [1.2.1](https://github.com/project-alkemi/alkemi-earn-kyc-service/compare/v1.2.0...v1.2.1) (2020-10-12)
+
+
+### Bug Fixes
+
+* fix remove customer kyc method and improve logging ([76ea43b](https://github.com/project-alkemi/alkemi-earn-kyc-service/commit/76ea43bcb94dbe3b21dadbc8cb24de5b6acdf222))
+* fix verify kyc method and improve logging ([c85579e](https://github.com/project-alkemi/alkemi-earn-kyc-service/commit/c85579e99db2a4ee508c5f8fe28c6ccf7676d2e7))
+
 # [1.2.0](https://github.com/project-alkemi/alkemi-earn-kyc-service/compare/v1.1.0...v1.2.0) (2020-10-12)
 
 
