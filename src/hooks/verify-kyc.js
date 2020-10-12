@@ -6,23 +6,23 @@ const { NotFound } = require('@feathersjs/errors');
 // eslint-disable-next-line no-unused-vars
 module.exports = (options = {}) => {
   return async context => {
-    const { data } = context;
+    const { id, data } = context;
 
     // initialize Market Contract
     const marketContract = await initMarketContract();
 
-    // add Address to Protocol
+    // check if Customer Address is KYC verfied
     const verifyKYC = await marketContract.methods
-      .verifyKYC(data._id)
+      .verifyKYC(id)
       .call()
-      .then(res => {
-        return res;
+      .then(response => {
+        return response;
       });
 
-    if (verifyKYC == true) {
-      console.log('Customer Found: ' + data._id);
+    if (verifyKYC) {
+      console.log('Successfully Found Customer: ' + id);
     } else {
-      new NotFound(new Error('Customer Not Found:' + data._id));
+      new NotFound(new Error('Customer Not Found: ' + id));
     }
 
     // Add new Fields
