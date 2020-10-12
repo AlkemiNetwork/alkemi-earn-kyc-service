@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/project-alkemi/alkemi-earn-kyc-service/compare/v1.2.1...v1.3.0) (2020-10-12)
+
+
+### Features
+
+* add build with docker ([65af867](https://github.com/project-alkemi/alkemi-earn-kyc-service/commit/65af867c2506098a2dfbab76feff4645b027c404))
+
 ## [1.2.1](https://github.com/project-alkemi/alkemi-earn-kyc-service/compare/v1.2.0...v1.2.1) (2020-10-12)
 
 
